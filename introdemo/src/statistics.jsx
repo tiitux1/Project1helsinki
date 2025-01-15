@@ -12,14 +12,16 @@ const Statistics = ({ feedback }) => {
   const positivePercentage = (feedback.good / total) * 100;
 
   return (
-    <div>
-      <StatisticLine text="Hyvä" value={feedback.good} />
-      <StatisticLine text="Neutraali" value={feedback.neutral} />
-      <StatisticLine text="Huono" value={feedback.bad} />
-      <StatisticLine text="Yhteensä" value={total} />
-      <StatisticLine text="Keskiarvo" value={average.toFixed(2)} />
-      <StatisticLine text="Positiivisia" value={`${positivePercentage.toFixed(2)} %`} />
-    </div>
+    <table>
+      <tbody>
+        <StatisticLine text="Hyvä" value={feedback.good} />
+        <StatisticLine text="Neutraali" value={feedback.neutral} />
+        <StatisticLine text="Huono" value={feedback.bad} />
+        <StatisticLine text="Yhteensä" value={total} />
+        <StatisticLine text="Keskiarvo" value={average.toFixed(2)} />
+        <StatisticLine text="Positiivisia" value={`${positivePercentage.toFixed(2)} %`} />
+      </tbody>
+    </table>
   );
 };
 
