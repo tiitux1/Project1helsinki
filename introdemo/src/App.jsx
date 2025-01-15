@@ -20,12 +20,14 @@ const App = () => {
   };
 
   const voteForAnecdote = () => {
-    const newVotes = [...votes]; // Kopioi votes-taulukko
-    newVotes[selected] += 1; // Lisää ääni valitulle anekdootille
-    setVotes(newVotes); // Päivitä tila uudella taulukolla
+    const newVotes = [...votes];
+    newVotes[selected] += 1;
+    setVotes(newVotes);
   };
 
   const mostVotedIndex = votes.indexOf(Math.max(...votes));
+  const mostVotedAnecdote = anecdotes[mostVotedIndex];
+  const mostVotes = votes[mostVotedIndex];
 
   return (
     <div>
@@ -36,10 +38,10 @@ const App = () => {
       <button onClick={showRandomAnecdote}>Näytä satunnainen anekdootti</button>
 
       <h2>Eniten ääniä saanut anekdootti</h2>
-      {votes[mostVotedIndex] > 0 ? (
+      {mostVotes > 0 ? (
         <div>
-          <p>{anecdotes[mostVotedIndex]}</p>
-          <p>Ääniä: {votes[mostVotedIndex]}</p>
+          <p>{mostVotedAnecdote}</p>
+          <p>Ääniä: {mostVotes}</p>
         </div>
       ) : (
         <p>Ei ääniä annettu vielä.</p>
