@@ -1,4 +1,5 @@
 import React from 'react';
+import StatisticLine from './StatisticLine';
 
 const Statistics = ({ feedback }) => {
   const total = feedback.good + feedback.neutral + feedback.bad;
@@ -12,12 +13,12 @@ const Statistics = ({ feedback }) => {
 
   return (
     <div>
-      <p>Hyvä: {feedback.good}</p>
-      <p>Neutraali: {feedback.neutral}</p>
-      <p>Huono: {feedback.bad}</p>
-      <p>Yhteensä: {total}</p>
-      <p>Keskiarvo: {average.toFixed(2)}</p>
-      <p>Positiivisia: {positivePercentage.toFixed(2)} %</p>
+      <StatisticLine text="Hyvä" value={feedback.good} />
+      <StatisticLine text="Neutraali" value={feedback.neutral} />
+      <StatisticLine text="Huono" value={feedback.bad} />
+      <StatisticLine text="Yhteensä" value={total} />
+      <StatisticLine text="Keskiarvo" value={average.toFixed(2)} />
+      <StatisticLine text="Positiivisia" value={`${positivePercentage.toFixed(2)} %`} />
     </div>
   );
 };

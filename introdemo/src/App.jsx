@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Statistics from './Statistics';
+import Button from './Button';
 
 const App = () => {
   const [feedback, setFeedback] = useState({
@@ -18,9 +19,9 @@ const App = () => {
   return (
     <div>
       <h1>Anna palautetta</h1>
-      <button onClick={() => handleFeedback('good')}>Hyvä</button>
-      <button onClick={() => handleFeedback('neutral')}>Neutraali</button>
-      <button onClick={() => handleFeedback('bad')}>Huono</button>
+      <Button handleClick={() => handleFeedback('good')} text="Hyvä" />
+      <Button handleClick={() => handleFeedback('neutral')} text="Neutraali" />
+      <Button handleClick={() => handleFeedback('bad')} text="Huono" />
 
       <h2>Tilastot</h2>
       <Statistics feedback={feedback} />
