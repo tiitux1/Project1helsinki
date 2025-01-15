@@ -12,17 +12,38 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0));
 
   const showRandomAnecdote = () => {
     const randomIndex = Math.floor(Math.random() * anecdotes.length);
     setSelected(randomIndex);
   };
 
+  const voteForAnecdote = () => {
+    const newVotes = [...votes]; // Kopioi votes-taulukko
+    newVotes[selected] += 1; // Lisää ääni valitulle anekdootille
+    setVotes(newVotes); // Päivitä tila uudella taulukolla
+  };
+
+  const mostVotedIndex = votes.indexOf(Math.max(...votes));
+
   return (
     <div>
       <h1>Ohjelmistotuotannon anekdootit</h1>
       <p>{anecdotes[selected]}</p>
+      <p>Ääniä: {votes[selected]}</p>
+      <button onClick={voteForAnecdote}>Äänestä</button>
       <button onClick={showRandomAnecdote}>Näytä satunnainen anekdootti</button>
+
+      <h2>Eniten ääniä saanut anekdootti</h2>
+      {votes[mostVotedIndex] > 0 ? (
+        <div>
+          <p>{anecdotes[mostVotedIndex]}</p>
+          <p>Ääniä: {votes[mostVotedIndex]}</p>
+        </div>
+      ) : (
+        <p>Ei ääniä annettu vielä.</p>
+      )}
     </div>
   );
 };
