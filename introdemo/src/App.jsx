@@ -1,30 +1,28 @@
 import React, { useState } from 'react';
-import Statistics from './Statistics';
-import Button from './Button';
 
 const App = () => {
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+  const anecdotes = [
+    "If it works, don’t touch it.",
+    "Programming is 10% writing code and 90% understanding why it doesn’t work.",
+    "Debugging is like being the detective in a crime movie where you are also the murderer.",
+    "Code never lies, comments sometimes do.",
+    "The best code is no code at all.",
+    "There are only two hard things in computer science: cache invalidation and naming things.",
+    "First, solve the problem. Then, write the code.",
+  ];
 
-  const handleFeedback = (type) => {
-    setFeedback({
-      ...feedback,
-      [type]: feedback[type] + 1,
-    });
+  const [selected, setSelected] = useState(0);
+
+  const showRandomAnecdote = () => {
+    const randomIndex = Math.floor(Math.random() * anecdotes.length);
+    setSelected(randomIndex);
   };
 
   return (
     <div>
-      <h1>Anna palautetta</h1>
-      <Button handleClick={() => handleFeedback('good')} text="Hyvä" />
-      <Button handleClick={() => handleFeedback('neutral')} text="Neutraali" />
-      <Button handleClick={() => handleFeedback('bad')} text="Huono" />
-
-      <h2>Tilastot</h2>
-      <Statistics feedback={feedback} />
+      <h1>Ohjelmistotuotannon anekdootit</h1>
+      <p>{anecdotes[selected]}</p>
+      <button onClick={showRandomAnecdote}>Näytä satunnainen anekdootti</button>
     </div>
   );
 };
