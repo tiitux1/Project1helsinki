@@ -1,50 +1,30 @@
-import React from 'react';
-
-const Header = ({ course }) => {
-  return <h1>{course.name}</h1>;
-};
-
-const Content = ({ parts }) => {
-  return (
-    <div>
-      {parts.map((part, index) => (
-        <p key={index}>
-          {part.name} {part.exercises}
-        </p>
-      ))}
-    </div>
-  );
-};
-
-const Total = ({ parts }) => {
-  const total = parts.reduce((sum, part) => sum + part.exercises, 0);
-  return <p>Total number of exercises: {total}</p>;
-};
+import React, { useState } from 'react';
 
 const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
+  const [feedback, setFeedback] = useState({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
+
+  const handleFeedback = (type) => {
+    setFeedback({
+      ...feedback,
+      [type]: feedback[type] + 1,
+    });
   };
 
   return (
     <div>
-      <Header course={course} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
+      <h1>Anna palautetta</h1>
+      <button onClick={() => handleFeedback('good')}>Hyvä</button>
+      <button onClick={() => handleFeedback('neutral')}>Neutraali</button>
+      <button onClick={() => handleFeedback('bad')}>Huono</button>
+
+      <h2>Tilastot</h2>
+      <p>Hyvä: {feedback.good}</p>
+      <p>Neutraali: {feedback.neutral}</p>
+      <p>Huono: {feedback.bad}</p>
     </div>
   );
 };
