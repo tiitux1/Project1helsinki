@@ -2,12 +2,13 @@ import React from 'react';
 
 const Statistics = ({ feedback }) => {
   const total = feedback.good + feedback.neutral + feedback.bad;
-  const average = total > 0 ? (feedback.good - feedback.bad) / total : 0;
-  const positivePercentage = total > 0 ? (feedback.good / total) * 100 : 0;
 
   if (total === 0) {
     return <p>Ei palautteita annettu.</p>;
   }
+
+  const average = (feedback.good - feedback.bad) / total;
+  const positivePercentage = (feedback.good / total) * 100;
 
   return (
     <div>
